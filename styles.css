@@ -299,7 +299,7 @@ body {
 .section-title {
     font-size: 1.4rem;
     margin: 0 0 0.5rem;
-    color: #0b1120;
+    color: #778309;
 }
 
 .section-subtitle {
@@ -527,6 +527,11 @@ body {
 
 .faq {
     max-width: 800px;
+    
+}
+
+.section-title {
+    color:rgb(46, 0, 211)
 }
 
 .faq-item + .faq-item {
@@ -536,6 +541,7 @@ body {
 .faq-item h3 {
     font-size: 0.95rem;
     margin: 0 0 0.25rem;
+    color: white
 }
 
 .faq-item p {
@@ -755,5 +761,219 @@ body {
 
     .hero-image-card img {
         height: 220px;
+    }
+}
+
+/* Bloquear scroll cuando el menú está abierto (el JS agrega .no-scroll) */
+html.no-scroll,
+body.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* ---------- MENÚ RESPONSIVE ---------- */
+@media (max-width: 768px) {
+
+    /* Header fijo arriba */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .header-content {
+        padding: 0.6rem 0;
+    }
+
+    /* Icono hamburguesa visible en móvil */
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.25rem;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 999px;
+        background: #111827;
+    }
+
+    /* MENÚ: panel que entra desde la IZQUIERDA, debajo del encabezado */
+    .nav {
+        position: fixed;
+        left: 0;
+        top: 65px;                        /* altura aprox. del header */
+        width: 100vw;                     /* ocupa todo el ancho */
+        height: calc(100vh - 65px);       /* y todo el alto restante */
+        max-width: 100vw;
+        background: #ffffff;
+        box-shadow: 18px 0 40px rgba(15, 23, 42, 0.25);
+        border-bottom: 1px solid #e5e7eb;
+        transform: translateX(-100%);     /* escondido a la izquierda */
+        transition: transform 0.25s ease; /* se desliza izq → der */
+        z-index: 55;
+        overflow-y: auto;
+    }
+
+    /* Si ves que todavía tapa un poquito el header,
+       subí estos 72px (ej: 76); si queda un hueco, bajalos (ej: 68)
+       y poné SIEMPRE el mismo número en top y en calc(...) */
+    /* EJEMPLO:
+       top: 80px;
+       height: calc(100vh - 80px);
+    */
+
+    /* Panel abierto */
+    .nav.open {
+        transform: translateX(0);
+    }
+
+    /* Animación de letras (mismo estilo que la otra landing) */
+    .nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 1.1rem 1.4rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+    }
+
+    /* Estado base: textos ocultos un poco a la izquierda */
+    .nav ul li {
+        width: 100%;
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    /* Al abrir: entran de izquierda → derecha con delay */
+    .nav.open ul li {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav.open ul li:nth-child(1) { transition-delay: 0.03s; }
+    .nav.open ul li:nth-child(2) { transition-delay: 0.08s; }
+    .nav.open ul li:nth-child(3) { transition-delay: 0.13s; }
+    .nav.open ul li:nth-child(4) { transition-delay: 0.18s; }
+    .nav.open ul li:nth-child(5) { transition-delay: 0.23s; }
+
+    /* Al cerrar (clase .closing que pone el JS): der → izq */
+    .nav.closing ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav ul li a {
+        display: inline-block;
+        width: 100%;
+        font-size: 0.95rem;
+        text-decoration: none;
+        color: #111827;
+    }
+
+    .nav ul li .nav-cta {
+        text-align: center;
+    }
+}
+
+/* ====== FOOTER CON REDES SOCIALES ====== */
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+}
+
+.footer-main p {
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer-social-label {
+    font-size: 0.8rem;
+    color: #e5e7eb;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.footer-social-icons a {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease,
+                transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Colores de hover por red */
+.footer-social-icons a[aria-label="Instagram"]:hover {
+    background: #e1306c;
+    color: #f9fafb;
+    box-shadow: 0 8px 18px rgba(225, 48, 108, 0.55);
+    transform: translateY(-1px);
+}
+
+.footer-social-icons a[aria-label="Facebook"]:hover {
+    background: #1877f2;
+    color: #f9fafb;
+    box-shadow: 0 8px 18px rgba(24, 119, 242, 0.55);
+    transform: translateY(-1px);
+}
+
+.footer-social-icons a[aria-label="LinkedIn"]:hover {
+    background: #0a66c2;
+    color: #f9fafb;
+    box-shadow: 0 8px 18px rgba(10, 102, 194, 0.55);
+    transform: translateY(-1px);
+}
+
+.footer-social-icons a[aria-label="WhatsApp"]:hover {
+    background: #22c55e;
+    color: #f9fafb;
+    box-shadow: 0 8px 18px rgba(34, 197, 94, 0.55);
+    transform: translateY(-1px);
+}
+
+/* Footer en desktop: texto a la izquierda, redes a la derecha */
+@media (min-width: 720px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .footer-social {
+        align-items: flex-end;
     }
 }
