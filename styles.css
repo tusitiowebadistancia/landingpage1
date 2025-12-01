@@ -813,9 +813,9 @@ body.no-scroll {
     .nav {
         position: fixed;
         left: 0;
-        top: 65px;                        /* altura aprox. del header */
+        top: 90px;                        /* altura aprox. del header */
         width: 100vw;                     /* ocupa todo el ancho */
-        height: calc(100vh - 65px);       /* y todo el alto restante */
+        height: calc(100vh - 90px);       /* y todo el alto restante */
         max-width: 100vw;
         background: #ffffff;
         box-shadow: 18px 0 40px rgba(15, 23, 42, 0.25);
